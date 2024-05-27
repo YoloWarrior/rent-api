@@ -1,2 +1,3 @@
-[install]
-  cmds = ['npm install --legacy-peer-deps']
+[build]
+builder = "nixpacks"
+buildCommand = "npm install --legacy-peer-deps && yarn build"
