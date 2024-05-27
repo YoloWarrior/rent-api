@@ -7,6 +7,7 @@ import { AdModule } from './modules/ad/ad.module';
 import { ConfigService } from '@nestjs/config';
 import { ServiceAccount } from 'firebase-admin';
 import { FirebaseAdminModule } from './modules/firebase/firebase.module';
+import { CacheModule } from '@nestjs/cache-manager';
 
 @Module({
   imports: [
@@ -17,6 +18,7 @@ import { FirebaseAdminModule } from './modules/firebase/firebase.module';
       autoLoadEntities: true,
       synchronize: true,
     }),
+    CacheModule.register(),
     AuthModule,
     FirebaseAdminModule,
     AdModule,
