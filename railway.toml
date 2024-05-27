@@ -1,2 +1,2 @@
 [build.nixpacksPlan.phases.install]
-cmds = [ "npm install -g corepack", "corepack enable pnpm", "pnpm install --frozen-lockfile", "pnpm add sharp" ]
+cmds = [ "npm install --legacy-peer-deps" ]
