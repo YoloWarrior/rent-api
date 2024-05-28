@@ -32,7 +32,7 @@ export class EmailService {
 
       isUserExist = false;
     } else {
-      await this.codeRepository.delete(user?.code.id);
+      if (user?.code) await this.codeRepository.delete(user?.code.id);
     }
 
     const verificationCode = this.generateVerificationCode();
@@ -45,7 +45,7 @@ export class EmailService {
 
     user.code = code;
 
-    await this.userService.update(user.id, user);
+    await this.userService.create(user);
 
     await this.mailerService.sendMail({
       to: email,

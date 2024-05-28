@@ -43,7 +43,7 @@ export class UserController {
     );
 
     return new ResponseDto(
-      await this.userService.generateAccessToken(email),
+      isConfirm ? await this.userService.generateAccessToken(email) : null,
       !isConfirm
         ? {
             status: 401,
