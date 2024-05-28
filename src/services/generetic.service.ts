@@ -75,9 +75,12 @@ export class GenericService<T> {
   }
 
   async update(data: DeepPartial<T>) {
-    await this.create(data);
-
-    return await this.findById(data['id']);
+    try {
+      await this.create(data);
+      return true;
+    } catch {
+      return false;
+    }
   }
 
   async delete(id: string): Promise<void> {
