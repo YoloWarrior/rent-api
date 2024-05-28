@@ -90,7 +90,10 @@ export class UserController {
   @UseGuards(AuthGuard)
   @HttpCode(200)
   async editUser(@Body() { user }, @Request() req) {
-    const userResult = await this.userService.update(req.id, {
+    const userInfo = await this.userService.getUserInfo(req.id);
+
+    const userResult = await this.userService.update({
+      ...userInfo,
       firstName: user?.firstName,
       lastName: user?.lastName,
       phone: user?.phone,

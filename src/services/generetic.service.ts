@@ -74,11 +74,10 @@ export class GenericService<T> {
     return this.repository.findOne({ where: conditions, relations });
   }
 
-  async update(id: string, data: DeepPartial<T>) {
-    const obj = await this.findById(id);
-    await this.create({ id: obj['id'], ...data });
+  async update(data: DeepPartial<T>) {
+    await this.create(data);
 
-    return await this.findById(id);
+    return await this.findById(data['id']);
   }
 
   async delete(id: string): Promise<void> {
