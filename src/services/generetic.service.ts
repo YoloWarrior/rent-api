@@ -76,7 +76,7 @@ export class GenericService<T> {
 
   async update(id: string, data: DeepPartial<T>) {
     const obj = await this.findById(id);
-    await this.repository.update(obj['id'], data as any);
+    await this.create({ id: obj['id'], ...data });
 
     return await this.findById(id);
   }
