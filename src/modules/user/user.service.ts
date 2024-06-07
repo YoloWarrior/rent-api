@@ -34,6 +34,7 @@ export class UserService extends GenericService<User> {
       },
       {
         ads: true,
+        code: false,
       },
     );
 

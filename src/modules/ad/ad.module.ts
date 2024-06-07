@@ -1,5 +1,5 @@
 import { UserService } from './../user/user.service';
-import { Module } from '@nestjs/common';
+import { Module, forwardRef } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 
 import { User } from 'src/core/entities/User';
@@ -8,14 +8,17 @@ import { AdType } from 'src/core/entities/AdType';
 import { Image } from 'src/core/entities/Image';
 import { AdController } from './ad.controller';
 import { Adservice } from './ad.service';
-import { FileUploadService } from 'src/services/file.service';
 import { AuthModule } from '../user/user.module';
 import { JwtService } from '@nestjs/jwt';
+import { FileModule } from '../file/file.module';
 
 @Module({
-  imports: [TypeOrmModule.forFeature([Ad, User, AdType, Image])],
+  imports: [
+    TypeOrmModule.forFeature([Ad, User, AdType, Image]),
+    forwardRef(() => AuthModule),
+  ],
   controllers: [AdController],
-  providers: [Adservice, FileUploadService, UserService, JwtService],
+  providers: [Adservice, JwtService],
   exports: [Adservice],
 })
 export class AdModule {}

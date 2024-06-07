@@ -8,13 +8,13 @@ export class AdDto {
   title: string;
   description: string;
   price: number;
-  priority = 1;
   street: string;
   house: string;
   rooms: number;
   geo: number[];
   square: number;
   type: string;
+  priority: string;
   floor: number;
   images: string[];
   phone?: string;
@@ -22,5 +22,4 @@ export class AdDto {
   name?: string;
 }
 
-export class EditAdDto extends OmitType(AdDto, ['priority', 'geo'] as const) {}
-export class CreateAdDto extends OmitType(EditAdDto, ['id'] as const) {}
+export class CreateAdDto extends OmitType(AdDto, ['id'] as const) {}

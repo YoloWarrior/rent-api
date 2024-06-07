@@ -8,6 +8,8 @@ import { ConfigService } from '@nestjs/config';
 import { ServiceAccount } from 'firebase-admin';
 import { FirebaseAdminModule } from './modules/firebase/firebase.module';
 import { CacheModule } from '@nestjs/cache-manager';
+import { JwtService } from '@nestjs/jwt';
+import { FileModule } from './modules/file/file.module';
 
 @Module({
   imports: [
@@ -19,9 +21,9 @@ import { CacheModule } from '@nestjs/cache-manager';
       synchronize: true,
     }),
     CacheModule.register(),
-    AuthModule,
     FirebaseAdminModule,
-    AdModule,
+    FileModule,
+    AuthModule,
   ],
   controllers: [AppController],
   providers: [AppService],

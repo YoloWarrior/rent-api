@@ -19,7 +19,7 @@ export class Ad {
   @Column() title: string;
   @Column() description: string;
   @Column() price: number;
-  @Column() priority: number;
+  @Column() priority: string;
   @Column() street: string;
   @Column() geo: number[];
   @Column() rooms: number;
@@ -29,7 +29,6 @@ export class Ad {
   @Column() userId: string;
 
   @ManyToOne(() => User, (user) => user.ads, { eager: true })
-  @JoinColumn()
   user: User;
 
   @ManyToOne(() => AdType, (adType) => adType.ads, { eager: true })

@@ -5,6 +5,7 @@ export class UserDto {
   firstName?: string;
   lastName?: string;
   email: string;
+  payed: boolean;
   phone: string;
   balance: number;
   ads: AdDto[];

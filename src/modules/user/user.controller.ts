@@ -34,6 +34,13 @@ export class UserController {
     return new ResponseDto<boolean>(isUserExist);
   }
 
+  @Post('payment-success')
+  @HttpCode(200)
+  @UseGuards(AuthGuard)
+  async paymentSuccess(@Request() req) {
+    await this.adService.setPriorityByUser(req.id, '0');
+  }
+
   @Post('confirm-code')
   @HttpCode(200)
   async confirmCode(@Body() { email, code }) {
@@ -66,9 +73,7 @@ export class UserController {
     ).items;
 
     return new ResponseDto({
-      firstName: user?.firstName,
-      lastName: user?.lastName,
-      balance: user?.balance,
+      ...user,
       ads: ads
         ? ads.map((ad) => {
             return {
@@ -81,8 +86,6 @@ export class UserController {
             } as AdDto;
           })
         : [],
-      email: user?.email,
-      phone: user?.phone,
     } as UserDto);
   }
 

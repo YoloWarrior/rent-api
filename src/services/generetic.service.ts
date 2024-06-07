@@ -66,7 +66,6 @@ export class GenericService<T> {
     relations: FindOptionsRelations<T> = null,
   ) {
     if (conditions && conditions['id']) {
-      // Convert the id to ObjectId if it's a valid ObjectId string
       conditions['_id'] = new ObjectId(conditions['id']);
       delete conditions['id'];
     }

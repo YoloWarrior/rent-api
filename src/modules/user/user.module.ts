@@ -9,11 +9,16 @@ import { JwtService } from '@nestjs/jwt';
 import { Ad } from 'src/core/entities/Ad';
 import { Adservice } from '../ad/ad.service';
 import { AdModule } from '../ad/ad.module';
+import { AdType } from 'src/core/entities/AdType';
+import { Image } from 'src/core/entities/Image';
 
 @Module({
-  imports: [TypeOrmModule.forFeature([User, Ad, Code]), EmailModule, AdModule],
+  imports: [
+    TypeOrmModule.forFeature([User, Ad, Code, AdType, Image]),
+    EmailModule,
+  ],
   controllers: [UserController],
-  providers: [UserService, JwtService],
+  providers: [UserService, JwtService, Adservice],
   exports: [UserService],
 })
 export class AuthModule {}

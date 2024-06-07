@@ -21,10 +21,12 @@ export class User {
 
   @Column() balance: number;
 
+  @Column() payed: boolean;
+
   @Column({ nullable: true }) phone: string;
 
   @OneToMany(() => Ad, (ad) => ad.user)
-  @Column()
+  @JoinColumn()
   ads: Ad[];
 
   @OneToOne(() => Code, (code) => code.user)
